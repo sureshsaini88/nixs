@@ -26,8 +26,13 @@ export async function GET(request) {
       return Response.json({ message: 'Invalid token' }, { status: 401 });
     }
 
+    const { searchParams } = new URL(request.url);
+    const platform = searchParams.get('platform');
+
     await connectDB();
-    const accounts = await UserAdsAccount.find({ user_id: decoded.id }).sort({ createdAt: -1 });
+    const filter = { user_id: decoded.id };
+    if (platform) filter.platform = platform;
+    const accounts = await UserAdsAccount.find(filter).sort({ createdAt: -1 });
 
     return Response.json(accounts);
 

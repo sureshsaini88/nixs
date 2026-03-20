@@ -27,7 +27,7 @@ export async function POST(request) {
       return Response.json({ message: 'Invalid token' }, { status: 401 });
     }
 
-    const { userId, license, ads_account_id, ads_account_name, ad_type, operate } = await request.json();
+    const { userId, license, ads_account_id, ads_account_name, ad_type, operate, platform } = await request.json();
 
     if (!userId) {
       return Response.json({ message: 'User ID is required' }, { status: 400 });
@@ -46,6 +46,7 @@ export async function POST(request) {
       ads_account_name,
       ad_type: ad_type || 'New',
       operate: operate || 'bm share | ad deposit',
+      platform: platform || 'facebook',
     });
 
     return Response.json({ message: 'Ad account created successfully', account });

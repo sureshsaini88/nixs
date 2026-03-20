@@ -23,6 +23,7 @@ export default function FacebookAccountListPage() {
   const [afterSaleOpen, setAfterSaleOpen] = useState(false);
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const pathname = usePathname();
   const { user, logout } = useUser();
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function FacebookAccountListPage() {
   const fetchAccounts = async () => {
     try {
       const token = localStorage.getItem('userToken');
-      const response = await fetch('/api/user/accounts', {
+      const response = await fetch('/api/user/accounts?platform=facebook', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -162,9 +163,14 @@ export default function FacebookAccountListPage() {
               <span className="dollarIcon">$</span>
               <span className="balanceAmount">${user?.balance || '0.00'}</span>
             </div>
-            <div className="userDropdown">
+            <div className="userDropdown" style={{position:'relative'}} onClick={() => setShowUserMenu(!showUserMenu)}>
               <span className="username">{user?.username}</span>
               <MdKeyboardArrowDown />
+              {showUserMenu && (
+                <div style={{position:'absolute',top:'100%',right:0,background:'#fff',border:'1px solid #ddd',borderRadius:'6px',boxShadow:'0 2px 8px rgba(0,0,0,0.15)',zIndex:999,minWidth:'120px'}}>
+                  <div onClick={handleLogout} style={{padding:'10px 16px',cursor:'pointer',color:'#dc3545',fontWeight:500}}>Logout</div>
+                </div>
+              )}
             </div>
           </div>
         </header>
@@ -236,9 +242,9 @@ export default function FacebookAccountListPage() {
                         <td className="greenText">{account.ads_account_name}</td>
                         <td><span className="adTypeBadge">{account.ad_type}</span></td>
                         <td className="operateLinks">
-                          <span className="link">bm share</span>
+                          <Link href="/facebook/accountManage/bmShareLog" className="link">bm share</Link>
                           <span className="divider">|</span>
-                          <span className="link">ad deposit</span>
+                          <Link href="/facebook/financing/adsDeposit" className="link">ad deposit</Link>
                         </td>
                       </tr>
                     ))

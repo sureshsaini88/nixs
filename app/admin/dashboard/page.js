@@ -21,6 +21,8 @@ export default function AdminDashboard() {
     wallet_address: '',
     qr_code_url: ''
   });
+  const [passwordFormData, setPasswordFormData] = useState({ currentPassword: '', newPassword: '', confirmPassword: '' });
+  const [passwordMsg, setPasswordMsg] = useState('');
   const [activeTab, setActiveTab] = useState('users');
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [showAddAccountForm, setShowAddAccountForm] = useState(false);
@@ -831,6 +833,30 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    setPasswordMsg('');
+    if (passwordFormData.newPassword !== passwordFormData.confirmPassword) {
+      setPasswordMsg('New passwords do not match');
+      return;
+    }
+    try {
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch('/api/admin/change-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ currentPassword: passwordFormData.currentPassword, newPassword: passwordFormData.newPassword })
+      });
+      const data = await response.json();
+      setPasswordMsg(data.message);
+      if (response.ok) {
+        setPasswordFormData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+      }
+    } catch (error) {
+      setPasswordMsg('Error changing password');
+    }
+  };
+
   return (
     <div className="adminLayout">
       {/* SIDEBAR */}
@@ -877,6 +903,10 @@ export default function AdminDashboard() {
             <MdAttachMoney size={20} />
             Wallet Settings
           </div>
+          <div className={`menuItem ${activeTab === 'changePassword' ? 'active' : ''}`} onClick={() => setActiveTab('changePassword')}>
+            <MdEdit size={20} />
+            Change Password
+          </div>
           <div className="menuItem" onClick={() => setShowCreateForm(true)}>
             <MdAdd size={20} />
             Create User
@@ -892,7 +922,7 @@ export default function AdminDashboard() {
       <div className="adminMain">
         {/* NAVBAR */}
         <header className="adminNavbar">
-          <h1>{activeTab === 'users' ? 'User Management' : activeTab === 'money' ? 'Money Requests' : activeTab === 'adApps' ? 'Ad Applications' : activeTab === 'refunds' ? 'Refund Requests' : activeTab === 'googleAdApps' ? 'Google Ad Applications' : activeTab === 'snapchatAdApps' ? 'Snapchat Ad Applications' : activeTab === 'tiktokAdApps' ? 'TikTok Ad Applications' : activeTab === 'walletSettings' ? 'Wallet Settings' : 'Ads Deposit Requests'}</h1>
+          <h1>{activeTab === 'users' ? 'User Management' : activeTab === 'money' ? 'Money Requests' : activeTab === 'adApps' ? 'Ad Applications' : activeTab === 'refunds' ? 'Refund Requests' : activeTab === 'googleAdApps' ? 'Google Ad Applications' : activeTab === 'snapchatAdApps' ? 'Snapchat Ad Applications' : activeTab === 'tiktokAdApps' ? 'TikTok Ad Applications' : activeTab === 'walletSettings' ? 'Wallet Settings' : activeTab === 'changePassword' ? 'Change Password' : 'Ads Deposit Requests'}</h1>
           <div className="adminInfo">
             <span>Admin: nixs_adyvibe.in</span>
           </div>
@@ -1355,6 +1385,50 @@ export default function AdminDashboard() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          ) : activeTab === 'changePassword' ? (
+            <div className="usersTable">
+              <h2>Change Admin Password</h2>
+              <div style={{background: '#f8f9fa', padding: '24px', borderRadius: '8px', maxWidth: '420px', marginTop: '20px'}}>
+                <form onSubmit={handleChangePassword} style={{display: 'grid', gap: '16px'}}>
+                  <div>
+                    <label style={{display: 'block', marginBottom: '5px', fontWeight: '500'}}>Current Password</label>
+                    <input
+                      type="password"
+                      value={passwordFormData.currentPassword}
+                      onChange={(e) => setPasswordFormData({...passwordFormData, currentPassword: e.target.value})}
+                      required
+                      style={{width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ddd'}}
+                    />
+                  </div>
+                  <div>
+                    <label style={{display: 'block', marginBottom: '5px', fontWeight: '500'}}>New Password</label>
+                    <input
+                      type="password"
+                      value={passwordFormData.newPassword}
+                      onChange={(e) => setPasswordFormData({...passwordFormData, newPassword: e.target.value})}
+                      required
+                      style={{width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ddd'}}
+                    />
+                  </div>
+                  <div>
+                    <label style={{display: 'block', marginBottom: '5px', fontWeight: '500'}}>Confirm New Password</label>
+                    <input
+                      type="password"
+                      value={passwordFormData.confirmPassword}
+                      onChange={(e) => setPasswordFormData({...passwordFormData, confirmPassword: e.target.value})}
+                      required
+                      style={{width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ddd'}}
+                    />
+                  </div>
+                  {passwordMsg && (
+                    <p style={{color: passwordMsg.includes('successfully') ? '#0eab79' : '#dc3545', fontWeight: 500}}>{passwordMsg}</p>
+                  )}
+                  <button type="submit" style={{background: '#0eab79', color: 'white', border: 'none', padding: '12px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600'}}>
+                    Change Password
+                  </button>
+                </form>
+              </div>
             </div>
           ) : activeTab === 'walletSettings' ? (
             <div className="usersTable">

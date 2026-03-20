@@ -92,6 +92,7 @@ export async function PUT(request) {
           ads_account_name: `${application.gmail} - Ad ${i + 1}`,
           ad_type: application.ad_type,
           operate: 'ad deposit | bm share',
+          platform: 'google',
         });
       }
     }

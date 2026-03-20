@@ -90,13 +90,16 @@ export async function PUT(request) {
       await User.findByIdAndUpdate(application.user_id, { $inc: { balance: -totalCost } });
 
       const adAccounts = application.ad_accounts || [];
-      for (const account of adAccounts) {
+      for (let i = 0; i < adAccounts.length; i++) {
+        const account = adAccounts[i];
         await UserAdsAccount.create({
           user_id: application.user_id,
           license: application.license_name,
+          ads_account_id: `FB-${Date.now()}-${i}`,
           ads_account_name: `DN1910-${account.name}`,
           ad_type: 'New',
           operate: 'bm share | ad deposit',
+          platform: 'facebook',
         });
       }
     }
