@@ -1,0 +1,173 @@
+"use client";
+
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { FiChevronDown } from "react-icons/fi";
+import { MdKeyboardArrowDown, MdAccountCircle, MdSecurity, MdMenu } from "react-icons/md";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useUser } from "../../contexts/UserContext";
+import "./google.css";
+
+const notificationData = [
+  { label: "Pending Application", value: 0 },
+  { label: "Pending Deposit", value: 0 },
+  { label: "Pending Modify", value: 0 },
+  { label: "Pending Share", value: 0 },
+  { label: "Pending Transfer&Refund", value: 0 }
+];
+
+export default function GoogleLayout({ children }) {
+  const [accountManageOpen, setAccountManageOpen] = useState(true);
+  const [financingOpen, setFinancingOpen] = useState(false);
+  const [afterSaleOpen, setAfterSaleOpen] = useState(false);
+  const pathname = usePathname();
+  const { user, logout, loading } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user && !loading) {
+      router.push('/login');
+    }
+  }, [user, loading]);
+
+  const handleLogout = () => {
+    logout();
+    router.push('/login');
+  };
+
+  const isAccountManageActive = pathname?.startsWith('/google/accountManage');
+  const isFinancingActive = pathname?.startsWith('/google/financing');
+  const isAfterSaleActive = pathname?.startsWith('/google/afterSales') || pathname?.startsWith('/afterSales');
+
+  return (
+    <div className="googleLayout">
+      {/* SIDEBAR */}
+      <aside className="googleSidebar">
+        <div className="googleLogoArea">
+          <Image src="/google.png" alt="Google" width={60} height={60} />
+        </div>
+
+        {/* AccountManage */}
+        <div
+          className={`sidebarItem ${isAccountManageActive ? 'active' : ''}`}
+          onClick={() => setAccountManageOpen(!accountManageOpen)}
+        >
+          <MdAccountCircle size={20} />
+          <span>AccountManage</span>
+          <MdKeyboardArrowDown className={accountManageOpen ? "rotate" : ""} />
+        </div>
+
+        {accountManageOpen && (
+          <div className="submenu">
+            <Link href="/google/accountManage/accountList" className={`submenuItem ${pathname === '/google/accountManage/accountList' ? 'active' : ''}`}>
+              Account List
+            </Link>
+            <Link href="/google/accountManage/applyGGCleanAd" className={`submenuItem ${pathname === '/google/accountManage/applyGGCleanAd' ? 'active' : ''}`}>
+              Apply GG Clean Ad
+            </Link>
+            <Link href="/google/accountManage/applyGGBHGHAd" className={`submenuItem ${pathname === '/google/accountManage/applyGGBHGHAd' ? 'active' : ''}`}>
+              Apply GG BH/GH Ad
+            </Link>
+            <Link href="/google/accountManage/gmailSharedLog" className={`submenuItem ${pathname === '/google/accountManage/gmailSharedLog' ? 'active' : ''}`}>
+              Gmail Shared Log
+            </Link>
+          </div>
+        )}
+
+        {/* Financing */}
+        <div
+          className={`sidebarItem ${isFinancingActive ? 'active' : ''}`}
+          onClick={() => setFinancingOpen(!financingOpen)}
+        >
+          <MdSecurity size={20} />
+          <span>Financing</span>
+          <MdKeyboardArrowDown className={financingOpen ? "rotate" : ""} />
+        </div>
+
+        {financingOpen && (
+          <div className="submenu">
+            <Link href="/google/financing/adsDeposit" className={`submenuItem ${pathname === '/google/financing/adsDeposit' ? 'active' : ''}`}>
+              Ads Deposit
+            </Link>
+            <Link href="/google/financing/adsDepositRecord" className={`submenuItem ${pathname === '/google/financing/adsDepositRecord' ? 'active' : ''}`}>
+              Ads Deposit Record
+            </Link>
+          </div>
+        )}
+
+        {/* AfterSale */}
+        <div
+          className={`sidebarItem ${isAfterSaleActive ? 'active' : ''}`}
+          onClick={() => setAfterSaleOpen(!afterSaleOpen)}
+        >
+          <MdSecurity size={20} />
+          <span>AfterSale</span>
+          <MdKeyboardArrowDown className={afterSaleOpen ? "rotate" : ""} />
+        </div>
+
+        {afterSaleOpen && (
+          <div className="submenu">
+            <Link href="/afterSales/refund" className={`submenuItem ${pathname === '/afterSales/refund' ? 'active' : ''}`}>
+              Refund
+            </Link>
+            <Link href="/afterSales/transfer" className={`submenuItem ${pathname === '/afterSales/transfer' ? 'active' : ''}`}>
+              Transfer
+            </Link>
+          </div>
+        )}
+      </aside>
+
+      {/* MAIN CONTENT */}
+      <div className="googleMain">
+        {/* NAVBAR */}
+        <header className="googleNavbar">
+          <div className="navLeft">
+            <Link href="/dashboard" className="navItem">
+              <Image src="/facebook.png" alt="Facebook" width={24} height={24} />
+              <span>Facebook</span>
+            </Link>
+            <Link href="/google/accountManage/accountList" className="navItem active">
+              <Image src="/google.png" alt="Google" width={24} height={24} />
+              <span>Google</span>
+            </Link>
+            <Link href="/snapchat/accountManage/accountList" className="navItem">
+              <Image src="/logo (2).png" alt="Snapchat" width={24} height={24} />
+              <span>Snapchat</span>
+            </Link>
+            <Link href="/tiktok/accountManage/accountList" className="navItem">
+              <Image src="/tik-tok.png" alt="TikTok" width={24} height={24} />
+              <span>TikTok</span>
+            </Link>
+          </div>
+
+          <div className="navRight">
+            <div className="userInfo">
+              <span className="balance">${user?.balance || '0.00'}</span>
+              <div className="userDropdown">
+                <span className="username">{user?.username}</span>
+                <FiChevronDown size={16} />
+                <div className="dropdownMenu">
+                  <button onClick={handleLogout}>Logout</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {/* CONTENT */}
+        <div className="googleContent">
+          {children}
+        </div>
+
+        {/* FOOTER */}
+        <div className="footerEnd">
+          <div className="footer">
+            Complaint and Suggestion:
+            <span className="email"> cs@hdedu.net</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

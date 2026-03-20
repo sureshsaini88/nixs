@@ -1,0 +1,164 @@
+.depositPage {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.depositForm {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.selectInput {
+  padding: 12px 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+}
+
+.selectInput.fullWidth {
+  width: 100%;
+}
+
+.amountOptions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.amountBtn {
+  padding: 12px 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.amountBtn:hover {
+  border-color: #fffc00;
+  background: #fffde7;
+}
+
+.amountBtn.selected {
+  border-color: #fffc00;
+  background: #fffc00;
+  color: #000;
+  font-weight: 600;
+}
+
+.customAmountRow {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.orText {
+  font-size: 14px;
+  color: #999;
+  font-weight: 500;
+}
+
+.customAmountInput {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.summarySection {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.summaryRow:last-child {
+  margin-bottom: 0;
+}
+
+.summaryRow .amount {
+  font-weight: 600;
+  color: #fffc00;
+  font-size: 18px;
+}
+
+.summaryRow .balance {
+  font-weight: 600;
+  color: #333;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.submitBtn {
+  background: #fffc00;
+  color: #000;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.submitBtn:hover {
+  background: #e6e300;
+}
+
+.submitBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.loadingText {
+  font-size: 13px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.noAccountsText {
+  font-size: 13px;
+  color: #dc3545;
+  margin-top: 5px;
+}

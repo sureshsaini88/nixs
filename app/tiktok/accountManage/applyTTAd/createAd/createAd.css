@@ -1,0 +1,204 @@
+/* TikTok Create Ad Page Styles */
+.createAdPage {
+  background: white;
+  padding: 20px;
+  margin-bottom: 150px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.contentContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.formSection {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.sectionLabel {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.sectionLabel::before {
+  content: '* ';
+  color: #ff4d4f;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.numberInput {
+  width: 100px;
+  padding: 10px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.selectInput {
+  padding: 10px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+}
+
+.selectInput.fullWidth {
+  width: 100%;
+}
+
+.textInput {
+  padding: 10px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+}
+
+.textInput.fullWidth {
+  width: 100%;
+}
+
+.formRow {
+  margin-bottom: 15px;
+}
+
+.formRowInline {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.inlineField {
+  flex: 1;
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkboxRow input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.checkboxRow label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.domainSection {
+  margin-top: 15px;
+  padding-left: 30px;
+}
+
+.createAdFooter {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 220px;
+  background: white;
+  padding: 20px 25px;
+  border-top: 1px solid #eee;
+  z-index: 100;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+}
+
+.totalsSection {
+  margin-bottom: 15px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.totalLabel {
+  font-size: 14px;
+  color: #666;
+}
+
+.totalValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.walletValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e7e34;
+}
+
+.footerActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background: white;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  border-color: #1e7e34;
+  color: #1e7e34;
+}
+
+.payBtn {
+  padding: 12px 40px;
+  background: #1e7e34;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.payBtn:hover {
+  background: #166428;
+}
+
+.payBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  color: #dc3545;
+  background: #f8d7da;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}

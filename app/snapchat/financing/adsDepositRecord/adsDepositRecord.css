@@ -1,0 +1,123 @@
+.recordPage {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.searchBar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.searchBtn {
+  background: #fffc00;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tableWrap {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+}
+
+.greenText {
+  color: #fffc00;
+  font-weight: 500;
+}
+
+.stateBadge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.stateBadge.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.stateBadge.approved,
+.stateBadge.completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.stateBadge.rejected,
+.stateBadge.failed {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.typeBadge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.operateLinks {
+  color: #fffc00;
+}
+
+.operateLinks .link {
+  cursor: pointer;
+}
+
+.operateLinks .link:hover {
+  text-decoration: underline;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}

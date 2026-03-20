@@ -1,0 +1,745 @@
+/* TikTok Dashboard - Green Theme (Facebook-like) */
+.tiktokLayout {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6f9;
+}
+
+/* SIDEBAR */
+.tiktokSidebar {
+  width: 220px;
+  background: white;
+  border-right: 1px solid #eee;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.tiktokLogoArea {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 30px;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.sidebarItem:hover {
+  background: #f8f9fa;
+}
+
+.sidebarItem.active {
+  background: #e8f5e9;
+  color: #1e7e34;
+  border-left: 3px solid #1e7e34;
+}
+
+.sidebarItem svg.rotate {
+  transform: rotate(180deg);
+  margin-left: auto;
+}
+
+.sidebarItem span {
+  flex: 1;
+}
+
+.submenu {
+  padding-left: 50px;
+}
+
+.submenuItem {
+  display: block;
+  padding: 10px 15px;
+  color: #666;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.submenuItem:hover {
+  color: #1e7e34;
+}
+
+.submenuItem.active {
+  color: #1e7e34;
+  font-weight: 600;
+  background: #f0f8f2;
+  border-radius: 4px;
+}
+
+/* MAIN CONTENT */
+.tiktokMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 220px;
+}
+
+/* NAVBAR */
+.tiktokNavbar {
+  height: 65px;
+  background: white;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #666;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.navItem:hover {
+  background: #f8f9fa;
+}
+
+.navItem.active {
+  background: #e8f5e9;
+  color: #1e7e34;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.balance {
+  font-weight: 600;
+  color: #1e7e34;
+}
+
+.userDropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.userDropdown:hover {
+  background: #f8f9fa;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  min-width: 120px;
+  display: none;
+  z-index: 1000;
+}
+
+.userDropdown:hover .dropdownMenu {
+  display: block;
+}
+
+.dropdownMenu button {
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdownMenu button:hover {
+  background: #f8f9fa;
+}
+
+/* CONTENT */
+.tiktokContent {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Footer */
+.footerEnd {
+  background: white;
+  border-top: 1px solid #eee;
+  padding: 15px 25px;
+}
+
+.footer {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.email {
+  color: #1e7e34;
+  font-weight: 500;
+}
+
+/* BUTTONS */
+.greenBtn {
+  background: #1e7e34;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.greenBtn:hover {
+  background: #166428;
+}
+
+.vipPackageBtn {
+  background: white;
+  border: 1px solid #d9d9d9;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.searchBtn {
+  background: white;
+  border: 1px solid #d9d9d9;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* TABLE */
+.tableWrap {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+}
+
+.greenText {
+  color: #1e7e34;
+  font-weight: 500;
+}
+
+/* STATUS BADGES */
+.stateBadge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.stateBadge.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.stateBadge.approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.stateBadge.rejected {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.typeBadge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+/* LINKS */
+.link {
+  color: #1e7e34;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  color: #ddd;
+  margin: 0 5px;
+}
+
+.operateLinks {
+  color: #1e7e34;
+}
+
+/* PAGE LAYOUT */
+.applyPage {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.contentContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.topActions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* FORM ELEMENTS */
+.formSection {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.sectionLabel {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.sectionLabel::before {
+  content: '* ';
+  color: #ff4d4f;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.numberInput {
+  width: 100px;
+  padding: 10px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.selectInput {
+  padding: 10px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+}
+
+.selectInput.fullWidth {
+  width: 100%;
+}
+
+.textInput {
+  padding: 10px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+}
+
+.textInput.fullWidth {
+  width: 100%;
+}
+
+.formRow {
+  margin-bottom: 15px;
+}
+
+.formRowInline {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.inlineField {
+  flex: 1;
+}
+
+/* CHECKBOX */
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkboxRow input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.checkboxRow label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.domainSection {
+  margin-top: 15px;
+  padding-left: 30px;
+}
+
+/* FOOTER WITH TOTALS */
+.createAdFooter {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 220px;
+  background: white;
+  padding: 20px 25px;
+  border-top: 1px solid #eee;
+  z-index: 100;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+}
+
+.totalsSection {
+  margin-bottom: 15px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.totalLabel {
+  font-size: 14px;
+  color: #666;
+}
+
+.totalValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.walletValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e7e34;
+}
+
+.footerActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background: white;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.backBtn:hover {
+  border-color: #1e7e34;
+  color: #1e7e34;
+}
+
+.payBtn {
+  padding: 12px 40px;
+  background: #1e7e34;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.payBtn:hover {
+  background: #166428;
+}
+
+.payBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  color: #dc3545;
+  background: #f8d7da;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+/* DEPOSIT PAGE */
+.depositPage {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.depositForm {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.amountOptions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.amountBtn {
+  padding: 12px 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.amountBtn:hover {
+  border-color: #1e7e34;
+  background: #f0f8f2;
+}
+
+.amountBtn.selected {
+  border-color: #1e7e34;
+  background: #1e7e34;
+  color: white;
+  font-weight: 600;
+}
+
+.customAmountRow {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.orText {
+  font-size: 14px;
+  color: #999;
+  font-weight: 500;
+}
+
+.customAmountInput {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.summarySection {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.summaryRow:last-child {
+  margin-bottom: 0;
+}
+
+.summaryRow .amount {
+  font-weight: 600;
+  color: #1e7e34;
+  font-size: 18px;
+}
+
+.summaryRow .balance {
+  font-weight: 600;
+  color: #333;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.submitBtn {
+  background: #1e7e34;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.submitBtn:hover {
+  background: #166428;
+}
+
+.submitBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.loadingText {
+  font-size: 13px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.noAccountsText {
+  font-size: 13px;
+  color: #dc3545;
+  margin-top: 5px;
+}
+
+/* RECORD PAGE */
+.recordPage {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.searchBar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.searchBtn {
+  background: #1e7e34;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* CREATE AD PAGE */
+.createAdPage {
+  background: white;
+  padding: 20px;
+  margin-bottom: 150px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}

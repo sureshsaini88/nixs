@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Equal 50/50 split */
+.left {
+  position: relative;
+  width: 50%;
+}
+
+.right {
+  width: 50%;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Center content vertically */
+.content {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Bigger centered logo */
+.logo {
+  margin-bottom: 30px;
+}
+
+/* Fix Hello text */
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #555;
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+/* Inputs */
+.input {
+  width: 100%;
+  padding: 14px 20px;
+  margin-bottom: 18px;
+  border-radius: 30px;
+  border: 1px solid #d3d3d3;
+  font-size: 14px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #0f8c3a;
+}
+
+/* Remember row */
+.rememberRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+/* Button */
+.button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 30px;
+  border: none;
+  background-color: #0f8c3a;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.button:hover {
+  background-color: #0c732f;
+}
+
+/* Register row */
+.registerRow {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.registerLink {
+  color: #0f8c3a;
+  font-weight: 600;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.registerLink:hover {
+  text-decoration: underline;
+}

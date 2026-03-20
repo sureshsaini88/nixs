@@ -1,0 +1,366 @@
+.bmSharePage {
+  background: #f4f6f9;
+  padding: 0 5px;
+  margin: 0;
+}
+
+/* CONTAINER WITH WHITE BG */
+.contentContainer {
+  background: white;
+  border-radius: 0;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 0;
+}
+
+/* ACTION BUTTONS */
+.topActions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.searchBtn {
+  background: white;
+  color: #0eab79;
+  border: 1px solid #0eab79;
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.searchBtn:hover {
+  background: #f0f8f2;
+}
+
+/* TABLE */
+.tableWrap {
+  background: white;
+  border-radius: 0;
+  overflow: hidden;
+  margin-top: 0;
+  border: 1px solid #e8e8e8;
+}
+
+.tableWrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableWrap thead {
+  background: #f8f9fa;
+}
+
+.tableWrap th {
+  text-align: left;
+  padding: 16px 12px;
+  font-weight: 600;
+  font-size: 15px;
+  background: #f8f9fa;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+}
+
+.tableWrap th:first-child {
+  border-left: none;
+}
+
+.tableWrap th:last-child {
+  border-right: none;
+}
+
+.tableWrap td {
+  padding: 16px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+}
+
+.tableWrap td:first-child {
+  border-left: none;
+}
+
+.tableWrap td:last-child {
+  border-right: none;
+}
+
+.tableWrap tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* GREEN TEXT */
+.greenText {
+  color: #1e7e34;
+  font-weight: 500;
+}
+
+/* STATE BADGES */
+.stateBadge {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.stateBadge.success {
+  background: #e8f5e9;
+  color: #1e7e34;
+}
+
+.stateBadge.fail {
+  background: #ffebee;
+  color: #ff4d4f;
+}
+
+.stateBadge.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.stateBadge.approved {
+  background: #e8f5e9;
+  color: #1e7e34;
+}
+
+.stateBadge.rejected {
+  background: #ffebee;
+  color: #721c24;
+}
+
+/* LAYOUT STYLES */
+.facebookLayout {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6f9;
+}
+
+/* SIDEBAR */
+.facebookSidebar {
+  width: 220px;
+  background: white;
+  border-right: 1px solid #eee;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.facebookLogoArea {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 30px;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.sidebarItem:hover {
+  background: #f8f9fa;
+}
+
+.sidebarItem.active {
+  background: #e8f5e9;
+  color: #1e7e34;
+  border-left: 3px solid #1e7e34;
+}
+
+.sidebarItem svg.rotate {
+  transform: rotate(180deg);
+  margin-left: auto;
+}
+
+.sidebarItem span {
+  flex: 1;
+}
+
+.submenu {
+  padding-left: 50px;
+}
+
+.submenuItem {
+  display: block;
+  padding: 10px 15px;
+  color: #666;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.submenuItem:hover {
+  color: #1e7e34;
+}
+
+.submenuItem.active {
+  color: #1e7e34;
+  font-weight: 600;
+  background: #f0f8f2;
+  border-radius: 4px;
+}
+
+/* MAIN CONTENT */
+.facebookMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 220px;
+}
+
+/* NAVBAR */
+.facebookNavbar {
+  height: 65px;
+  background: white;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hamburgerIcon {
+  color: #1e7e34;
+  cursor: pointer;
+}
+
+.homeText {
+  font-weight: 700;
+  font-size: 16px;
+  color: #1e7e34;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: #666;
+  font-size: 16px;
+  font-weight: 700;
+  position: relative;
+}
+
+.navItem.active {
+  color: #1e7e34;
+  font-weight: 800;
+}
+
+.navItem.newBadge::after {
+  content: 'NEW';
+  position: absolute;
+  top: -8px;
+  right: -20px;
+  background: #ff4d4f;
+  color: white;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.balanceBox {
+  background: #0eab79;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dollarIcon {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.balanceAmount {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.userDropdown {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+}
+
+.username {
+  color: #1e7e34;
+}
+
+/* CONTENT */
+.facebookContent {
+  flex: 1;
+  padding: 10px 25px 25px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* FOOTER */
+.footerEnd {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 220px;
+  background: white;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #eee;
+  z-index: 100;
+}
+
+.footer {
+  font-size: 14px;
+  color: #333;
+}
+
+.email {
+  color: #0eab79;
+  font-weight: 600;
+}

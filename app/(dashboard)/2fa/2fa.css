@@ -1,0 +1,126 @@
+.twoFAPage {
+  background: #f4f6f9;
+  min-height: 100%;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.twoFAContainer {
+  background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 100%);
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.twoFATitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.twoFAInput {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  background: white;
+  color: #333;
+}
+
+.twoFAInput:focus {
+  outline: none;
+  border-color: #0eab79;
+}
+
+.twoFAInput::placeholder {
+  color: #999;
+}
+
+.getCodeBtn {
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+  box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
+}
+
+.getCodeBtn:hover {
+  background: #1976d2;
+}
+
+.getCodeBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.resultSection {
+  margin-top: 20px;
+}
+
+.expiresText {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.timer {
+  color: #0eab79;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.codeBox {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.generatedCode {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 8px;
+  font-family: 'Courier New', monospace;
+}
+
+.copyBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyBtn:hover {
+  background: #f0f0f0;
+  color: #0eab79;
+}
