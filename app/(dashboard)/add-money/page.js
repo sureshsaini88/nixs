@@ -79,8 +79,12 @@ export default function AddMoneyPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (Number(formData.charge) < 500) {
+      alert('Minimum deposit amount is $500');
+      return;
+    }
     setSubmitting(true);
-    
+
     try {
       const token = localStorage.getItem('userToken');
       
@@ -217,11 +221,12 @@ export default function AddMoneyPage() {
 
               <div className="formRow">
                 <label>charge</label>
-                <input 
-                  type="number" 
-                  placeholder="Please input money"
+                <input
+                  type="number"
+                  placeholder="Minimum $500"
                   value={formData.charge}
                   onChange={(e) => setFormData({...formData, charge: e.target.value})}
+                  min="500"
                   required
                 />
               </div>

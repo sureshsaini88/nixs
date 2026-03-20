@@ -40,7 +40,7 @@ export async function POST(request) {
     if (currentPassword === 'nixs@2026') {
       await connectDB();
       await Admin.findOneAndUpdate(
-        { username: 'nixs_adyvibe.in' },
+        { username: 'SkyrocketAgency' },
         { password: newPassword },
         { upsert: true }
       );

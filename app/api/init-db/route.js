@@ -8,8 +8,8 @@ export async function GET(request) {
 
     // Seed default admin
     await Admin.findOneAndUpdate(
-      { username: 'nixs_adyvibe.in' },
-      { username: 'nixs_adyvibe.in', password: 'nixs@2026' },
+      { username: 'SkyrocketAgency' },
+      { username: 'SkyrocketAgency', password: 'nixs@2026' },
       { upsert: true }
     );
 

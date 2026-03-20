@@ -924,7 +924,7 @@ export default function AdminDashboard() {
         <header className="adminNavbar">
           <h1>{activeTab === 'users' ? 'User Management' : activeTab === 'money' ? 'Money Requests' : activeTab === 'adApps' ? 'Ad Applications' : activeTab === 'refunds' ? 'Refund Requests' : activeTab === 'googleAdApps' ? 'Google Ad Applications' : activeTab === 'snapchatAdApps' ? 'Snapchat Ad Applications' : activeTab === 'tiktokAdApps' ? 'TikTok Ad Applications' : activeTab === 'walletSettings' ? 'Wallet Settings' : activeTab === 'changePassword' ? 'Change Password' : 'Ads Deposit Requests'}</h1>
           <div className="adminInfo">
-            <span>Admin: nixs_adyvibe.in</span>
+            <span>Admin: SkyrocketAgency</span>
           </div>
         </header>
 
