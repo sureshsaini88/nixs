@@ -98,9 +98,7 @@ export default function AccountListPage() {
                     <td className="greenText">${item.balance || '0.00'}</td>
                     <td>{new Date(item.created_at).toLocaleString()}</td>
                     <td className="operateLinks">
-                      <span className="link">detail</span>
-                      <span className="divider">|</span>
-                      <span className="link">edit</span>
+                      <Link href="/snapchat/financing/adsDeposit" className="link">ad deposit</Link>
                     </td>
                   </tr>
                 ))

@@ -24,6 +24,10 @@ export default function FacebookAccountListPage() {
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showBmModal, setShowBmModal] = useState(false);
+  const [bmAccount, setBmAccount] = useState(null);
+  const [bmId, setBmId] = useState('');
+  const [bmSubmitting, setBmSubmitting] = useState(false);
   const pathname = usePathname();
   const { user, logout } = useUser();
   const router = useRouter();
@@ -56,6 +60,41 @@ export default function FacebookAccountListPage() {
   const handleLogout = () => {
     logout();
     router.push('/login');
+  };
+
+  const openBmModal = (account) => {
+    setBmAccount(account);
+    setBmId('');
+    setShowBmModal(true);
+  };
+
+  const handleBmSubmit = async () => {
+    if (!bmId.trim()) { alert('Please enter a BM ID'); return; }
+    setBmSubmitting(true);
+    try {
+      const token = localStorage.getItem('userToken');
+      const response = await fetch('/api/bm-share-requests', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({
+          ads_account_id: bmAccount.ads_account_id,
+          ads_account_name: bmAccount.ads_account_name,
+          bm_id: bmId.trim(),
+        })
+      });
+      if (response.ok) {
+        alert('BM Share request submitted successfully!');
+        setShowBmModal(false);
+        setBmId('');
+      } else {
+        alert('Failed to submit BM Share request');
+      }
+    } catch (error) {
+      console.error('BM share error:', error);
+      alert('Error submitting BM Share request');
+    } finally {
+      setBmSubmitting(false);
+    }
   };
 
   return (
@@ -242,7 +281,7 @@ export default function FacebookAccountListPage() {
                         <td className="greenText">{account.ads_account_name}</td>
                         <td><span className="adTypeBadge">{account.ad_type}</span></td>
                         <td className="operateLinks">
-                          <Link href="/facebook/accountManage/bmShareLog" className="link">bm share</Link>
+                          <span className="link" style={{cursor:'pointer'}} onClick={() => openBmModal(account)}>bm share</span>
                           <span className="divider">|</span>
                           <Link href="/facebook/financing/adsDeposit" className="link">ad deposit</Link>
                         </td>
@@ -281,6 +320,47 @@ export default function FacebookAccountListPage() {
           </div>
         </div>
       </div>
+
+      {/* BM SHARE MODAL */}
+      {showBmModal && (
+        <div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:1000}}>
+          <div style={{background:'#fff',borderRadius:'10px',padding:'28px',minWidth:'360px',boxShadow:'0 8px 32px rgba(0,0,0,0.2)'}}>
+            <h3 style={{marginBottom:'6px',fontSize:'16px',fontWeight:700}}>BM Share Request</h3>
+            {bmAccount && (
+              <p style={{fontSize:'13px',color:'#666',marginBottom:'18px'}}>
+                Account: <strong>{bmAccount.ads_account_name}</strong> ({bmAccount.ads_account_id})
+              </p>
+            )}
+            <div style={{marginBottom:'18px'}}>
+              <label style={{display:'block',marginBottom:'6px',fontWeight:500,fontSize:'14px'}}>Enter BM ID</label>
+              <input
+                type="text"
+                value={bmId}
+                onChange={(e) => setBmId(e.target.value)}
+                placeholder="e.g. 123456789012345"
+                style={{width:'100%',padding:'10px',border:'1px solid #ddd',borderRadius:'6px',fontSize:'14px',boxSizing:'border-box'}}
+                onKeyDown={(e) => e.key === 'Enter' && handleBmSubmit()}
+                autoFocus
+              />
+            </div>
+            <div style={{display:'flex',gap:'10px',justifyContent:'flex-end'}}>
+              <button
+                onClick={() => setShowBmModal(false)}
+                style={{padding:'9px 20px',border:'1px solid #ddd',borderRadius:'6px',background:'#fff',cursor:'pointer',fontSize:'14px'}}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleBmSubmit}
+                disabled={bmSubmitting}
+                style={{padding:'9px 20px',border:'none',borderRadius:'6px',background:'#1e7e34',color:'#fff',cursor:'pointer',fontSize:'14px',fontWeight:600}}
+              >
+                {bmSubmitting ? 'Submitting...' : 'Submit'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

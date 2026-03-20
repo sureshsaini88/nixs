@@ -25,7 +25,7 @@ export default function GoogleAdsDepositPage() {
   const fetchUserAccounts = async () => {
     try {
       const token = localStorage.getItem('userToken');
-      const response = await fetch('/api/user/accounts', {
+      const response = await fetch('/api/user/accounts?platform=google', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {

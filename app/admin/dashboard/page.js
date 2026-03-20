@@ -16,6 +16,7 @@ export default function AdminDashboard() {
   const [snapchatAdApplications, setSnapchatAdApplications] = useState([]);
   const [tiktokAdApplications, setTiktokAdApplications] = useState([]);
   const [walletSettings, setWalletSettings] = useState([]);
+  const [bmShareRequests, setBmShareRequests] = useState([]);
   const [walletFormData, setWalletFormData] = useState({
     coin_type: '',
     wallet_address: '',
@@ -63,6 +64,21 @@ export default function AdminDashboard() {
     }
   };
 
+  const fetchBmShareRequests = async () => {
+    try {
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch('/api/admin/bm-share-requests', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setBmShareRequests(data);
+      }
+    } catch (error) {
+      console.error('Error fetching BM share requests:', error);
+    }
+  };
+
   useEffect(() => {
     checkAuth();
     fetchUsers();
@@ -73,6 +89,7 @@ export default function AdminDashboard() {
     fetchGoogleAdApplications();
     fetchSnapchatAdApplications();
     fetchTiktokAdApplications();
+    fetchBmShareRequests();
   }, []);
 
   const checkAuth = () => {
@@ -899,6 +916,10 @@ export default function AdminDashboard() {
             <MdAssignment size={20} />
             TikTok Ad Apps
           </div>
+          <div className={`menuItem ${activeTab === 'bmShare' ? 'active' : ''}`} onClick={() => { setActiveTab('bmShare'); fetchBmShareRequests(); }}>
+            <MdAssignment size={20} />
+            BM Share Requests
+          </div>
           <div className={`menuItem ${activeTab === 'walletSettings' ? 'active' : ''}`} onClick={() => { setActiveTab('walletSettings'); fetchWalletSettings(); }}>
             <MdAttachMoney size={20} />
             Wallet Settings
@@ -922,7 +943,7 @@ export default function AdminDashboard() {
       <div className="adminMain">
         {/* NAVBAR */}
         <header className="adminNavbar">
-          <h1>{activeTab === 'users' ? 'User Management' : activeTab === 'money' ? 'Money Requests' : activeTab === 'adApps' ? 'Ad Applications' : activeTab === 'refunds' ? 'Refund Requests' : activeTab === 'googleAdApps' ? 'Google Ad Applications' : activeTab === 'snapchatAdApps' ? 'Snapchat Ad Applications' : activeTab === 'tiktokAdApps' ? 'TikTok Ad Applications' : activeTab === 'walletSettings' ? 'Wallet Settings' : activeTab === 'changePassword' ? 'Change Password' : 'Ads Deposit Requests'}</h1>
+          <h1>{activeTab === 'users' ? 'User Management' : activeTab === 'money' ? 'Money Requests' : activeTab === 'adApps' ? 'Ad Applications' : activeTab === 'refunds' ? 'Refund Requests' : activeTab === 'googleAdApps' ? 'Google Ad Applications' : activeTab === 'snapchatAdApps' ? 'Snapchat Ad Applications' : activeTab === 'tiktokAdApps' ? 'TikTok Ad Applications' : activeTab === 'walletSettings' ? 'Wallet Settings' : activeTab === 'changePassword' ? 'Change Password' : activeTab === 'bmShare' ? 'BM Share Requests' : 'Ads Deposit Requests'}</h1>
           <div className="adminInfo">
             <span>Admin: SkyrocketAgency</span>
           </div>
@@ -1383,6 +1404,40 @@ export default function AdminDashboard() {
                       </td>
                     </tr>
                   ))}
+                </tbody>
+              </table>
+            </div>
+          ) : activeTab === 'bmShare' ? (
+            <div className="usersTable">
+              <h2>BM Share Requests</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Ads Account</th>
+                    <th>Account ID</th>
+                    <th>BM ID</th>
+                    <th>Status</th>
+                    <th>Submitted</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bmShareRequests.length === 0 ? (
+                    <tr><td colSpan="7" style={{textAlign:'center',padding:'20px'}}>No BM share requests yet</td></tr>
+                  ) : (
+                    bmShareRequests.map((req) => (
+                      <tr key={req.id}>
+                        <td>BM{req.id.toString().padStart(8, '0')}</td>
+                        <td>{req.username}</td>
+                        <td>{req.ads_account_name || '-'}</td>
+                        <td>{req.ads_account_id}</td>
+                        <td style={{fontFamily:'monospace'}}>{req.bm_id}</td>
+                        <td><span className={`statusBadge ${req.status}`}>{req.status}</span></td>
+                        <td>{new Date(req.created_at).toLocaleString()}</td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>

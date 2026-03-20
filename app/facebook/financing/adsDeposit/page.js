@@ -37,7 +37,7 @@ export default function AdsDepositPage() {
   const fetchUserAccounts = async () => {
     try {
       const token = localStorage.getItem('userToken');
-      const response = await fetch('/api/user/accounts', {
+      const response = await fetch('/api/user/accounts?platform=facebook', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {

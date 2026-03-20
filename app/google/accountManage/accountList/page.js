@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { FiMaximize2, FiSearch, FiChevronDown } from "react-icons/fi";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useUser } from "../../../../contexts/UserContext";
 
 const notificationData = [
@@ -102,7 +103,7 @@ export default function GoogleAccountListPage() {
                     <td className="greenText">{account.ads_account_name || '-'}</td>
                     <td><span className="statusBadge pending">{account.ad_type || 'New'}</span></td>
                     <td className="operateLinks" style={{ color: '#1e7e34' }}>
-                      <span style={{ cursor: 'pointer' }}>ad deposit</span>
+                      <Link href="/google/financing/adsDeposit" style={{ color: '#1e7e34', textDecoration: 'none', cursor: 'pointer' }}>ad deposit</Link>
                     </td>
                   </tr>
                 ))
