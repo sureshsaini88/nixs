@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { FiSearch, FiCopy } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import { MdKeyboardArrowDown, MdAccountCircle, MdSecurity, MdMenu } from "react-icons/md";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -18,9 +18,6 @@ export default function AdsDepositPage() {
   const [deposits, setDeposits] = useState([]);
   const [userAccounts, setUserAccounts] = useState([]);
   const [submitting, setSubmitting] = useState(false);
-  const [walletSettings, setWalletSettings] = useState({});
-  const [selectedWallet, setSelectedWallet] = useState(null);
-  const [copied, setCopied] = useState(false);
   const pathname = usePathname();
   const { user, loading, logout } = useUser();
   const router = useRouter();
@@ -31,7 +28,6 @@ export default function AdsDepositPage() {
       return;
     }
     fetchUserAccounts();
-    fetchWalletSettings();
   }, [user, loading]);
 
   const fetchUserAccounts = async () => {
@@ -47,32 +43,6 @@ export default function AdsDepositPage() {
     } catch (error) {
       console.error('Error fetching accounts:', error);
     }
-  };
-
-  const fetchWalletSettings = async () => {
-    try {
-      const response = await fetch('/api/wallet-settings');
-      if (response.ok) {
-        const data = await response.json();
-        const settingsObj = {};
-        data.forEach(wallet => {
-          settingsObj[wallet.coin_type] = wallet;
-        });
-        setWalletSettings(settingsObj);
-        // Default to USDT if available
-        if (settingsObj['USDT']) {
-          setSelectedWallet(settingsObj['USDT']);
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching wallet settings:', error);
-    }
-  };
-
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
   };
 
   const handleLogout = () => {
@@ -343,47 +313,6 @@ export default function AdsDepositPage() {
                   Add Ads Deposit
                 </button>
               </div>
-
-              {/* WALLET INFO SECTION - Show when deposits exist */}
-              {deposits.length > 0 && selectedWallet && (
-                <div className="walletInfoSection">
-                  <div className="walletInfoBox">
-                    <div className="walletHeader">
-                      <span className="walletCoin">{selectedWallet.coin_type}</span>
-                      <span className="walletLabel">Payment Address</span>
-                    </div>
-                    
-                    {selectedWallet.qr_code_url && (
-                      <div className="qrCodeWrapper">
-                        <Image 
-                          src={selectedWallet.qr_code_url} 
-                          alt={`${selectedWallet.coin_type} QR Code`}
-                          width={150}
-                          height={150}
-                          className="qrCodeImage"
-                        />
-                      </div>
-                    )}
-                    
-                    <div className="walletAddressWrapper">
-                      <code className="walletAddress">{selectedWallet.wallet_address}</code>
-                      <button 
-                        type="button" 
-                        className="copyBtn"
-                        onClick={() => copyToClipboard(selectedWallet.wallet_address)}
-                        title="Copy address"
-                      >
-                        <FiCopy size={16} />
-                        {copied ? 'Copied!' : 'Copy'}
-                      </button>
-                    </div>
-                    
-                    <p className="walletNote">
-                      Please send {selectedWallet.coin_type} to this address. Your deposit request will be processed after payment confirmation.
-                    </p>
-                  </div>
-                </div>
-              )}
 
               {/* TOTALS SECTION */}
               <div className="totalsSection">
