@@ -250,7 +250,7 @@ export default function CreateTTAdPage() {
           </div>
           <div className="totalRow">
             <span className="totalLabel">Total Cost:</span>
-            <span className="totalValue">{depositAmount ? `$${depositAmount} USD` : '$0 USD'}</span>
+            <span className="totalValue">{depositAmount ? `$${(parseInt(depositAmount) * 1.03).toFixed(2)} USD` : '$0 USD'}</span>
           </div>
           <div className="totalRow">
             <span className="totalLabel">Wallet:</span>

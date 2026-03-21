@@ -562,7 +562,7 @@ export default function CreateAdPage() {
               </div>
               <div className="totalRow">
                 <span className="totalLabel">Total Cost:</span>
-                <span className="totalValue">{calculateTotalDeposit()} USD</span>
+                <span className="totalValue">{(calculateTotalDeposit() * 1.03).toFixed(2)} USD</span>
               </div>
               <div className="totalRow">
                 <span className="totalLabel">Wallet:</span>

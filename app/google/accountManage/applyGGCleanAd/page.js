@@ -207,10 +207,16 @@ export default function ApplyGGCleanAdPage() {
         </div>
 
         <div className="formRow" style={{ background: '#f8f9fa', padding: '15px', borderRadius: '6px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <span style={{ fontWeight: 600, color: '#333' }}>Total Deposit Of Ads:</span>
+            <span style={{ fontSize: '18px', fontWeight: 700, color: '#333' }}>
+              ${(adNum * depositAmount).toLocaleString()}
+            </span>
+          </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontWeight: 600, color: '#333' }}>Total Cost:</span>
             <span style={{ fontSize: '20px', fontWeight: 700, color: '#1e7e34' }}>
-              ${(adNum * depositAmount).toLocaleString()}
+              ${(adNum * depositAmount * 1.03).toFixed(2)}
             </span>
           </div>
         </div>
