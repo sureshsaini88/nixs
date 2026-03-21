@@ -40,8 +40,8 @@ export default function AdsDepositPage() {
   const handleDeposit = async () => {
     const amount = customAmount ? parseInt(customAmount) : parseInt(selectedAmount);
     
-    if (!amount || amount < 1) {
-      alert('Please enter a valid amount');
+    if (!amount || amount < 100) {
+      alert('Minimum deposit amount is $100');
       return;
     }
     
@@ -136,13 +136,13 @@ export default function AdsDepositPage() {
             <input
               type="number"
               className="customAmountInput"
-              placeholder="Enter custom amount"
+              placeholder="Enter custom amount (min $100)"
               value={customAmount}
               onChange={(e) => {
                 setCustomAmount(e.target.value);
                 setSelectedAmount("");
               }}
-              min="1"
+              min="100"
             />
           </div>
         </div>

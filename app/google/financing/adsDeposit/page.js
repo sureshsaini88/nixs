@@ -40,6 +40,10 @@ export default function GoogleAdsDepositPage() {
   const handleAddDeposit = () => {
     if (adAccount && money) {
       const depositAmount = parseFloat(money) || 0;
+      if (depositAmount < 100) {
+        alert('Minimum deposit amount is $100');
+        return;
+      }
       const costAmount = depositAmount * 1.03; // 3% fee
       
       const selectedAccount = userAccounts.find(acc => acc.ads_account_id === adAccount);
