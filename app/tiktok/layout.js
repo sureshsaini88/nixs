@@ -145,14 +145,6 @@ export default function TikTokLayout({ children }) {
         <div className="tiktokContent">
           {children}
         </div>
-
-        {/* FOOTER */}
-        <div className="footerEnd">
-          <div className="footer">
-            Complaint and Suggestion:
-            <span className="email"> cs@hdedu.net</span>
-          </div>
-        </div>
       </div>
     </div>
   );

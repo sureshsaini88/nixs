@@ -310,14 +310,6 @@ export default function FacebookAccountListPage() {
               </div>
             </div>
           </div>
-
-          {/* FOOTER */}
-          <div className="footerEnd">
-            <div className="footer">
-              Complaint and Suggestion:
-              <span className="email"> cs@hdedu.net</span>
-            </div>
-          </div>
         </div>
       </div>
 

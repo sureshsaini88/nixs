@@ -136,12 +136,6 @@ export default function DashboardLayout({ children }) {
         <div className="pageContent">
           {children}
 
-        <div className="footerEnd">
-          <div className="footer">
-            Complaint and Suggestion:
-            <span className="email"> cs@hdedu.net</span>
-          </div>
-        </div>
 
         </div>
       </div>

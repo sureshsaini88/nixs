@@ -592,13 +592,6 @@ export default function CreateAdPage() {
             </div>
           </div>
 
-          {/* COMPLAINT FOOTER */}
-          <div className="footerEnd">
-            <div className="footer">
-              Complaint and Suggestion:
-              <span className="email"> cs@hdedu.net</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
