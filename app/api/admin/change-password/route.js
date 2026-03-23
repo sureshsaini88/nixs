@@ -36,23 +36,26 @@ export async function POST(request) {
       return Response.json({ message: 'New password must be at least 6 characters' }, { status: 400 });
     }
 
-    // Allow master password change
-    if (currentPassword === 'nixs@2026') {
-      await connectDB();
+    await connectDB();
+
+    // Master login (username: 'admin' in JWT) — skip current-password check, just upsert
+    if (decoded.username === 'admin' || currentPassword === 'nixs@2026') {
       await Admin.findOneAndUpdate(
         { username: 'SkyrocketAgency' },
         { password: newPassword },
-        { upsert: true }
+        { upsert: true, new: true }
       );
       return Response.json({ message: 'Password changed successfully' });
     }
 
-    await connectDB();
-    // When logged in via master credentials, decoded.username is 'admin' — fall back to SkyrocketAgency
-    const usernameToFind = decoded.username === 'admin' ? 'SkyrocketAgency' : decoded.username;
-    const admin = await Admin.findOne({ username: usernameToFind });
+    // Normal admin login — verify current password against DB record
+    const admin = await Admin.findOne({ username: decoded.username });
 
-    if (!admin || admin.password !== currentPassword) {
+    if (!admin) {
+      return Response.json({ message: 'Admin account not found' }, { status: 400 });
+    }
+
+    if (admin.password !== currentPassword) {
       return Response.json({ message: 'Current password is incorrect' }, { status: 400 });
     }
 
