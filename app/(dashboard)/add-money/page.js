@@ -221,14 +221,19 @@ export default function AddMoneyPage() {
 
               <div className="formRow">
                 <label>charge</label>
-                <input
-                  type="number"
-                  placeholder="Minimum $500"
-                  value={formData.charge}
-                  onChange={(e) => setFormData({...formData, charge: e.target.value})}
-                  min="500"
-                  required
-                />
+                <div className="chargeInputWrap">
+                  <input
+                    type="number"
+                    placeholder=""
+                    value={formData.charge}
+                    onChange={(e) => setFormData({...formData, charge: e.target.value})}
+                    min="500"
+                    required
+                    onFocus={(e) => e.currentTarget.parentElement.classList.add('showMinHint')}
+                    onBlur={(e) => e.currentTarget.parentElement.classList.remove('showMinHint')}
+                  />
+                  <span className="minHint">min $500</span>
+                </div>
               </div>
 
               <div className="formRow">
