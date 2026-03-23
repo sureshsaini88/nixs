@@ -323,8 +323,8 @@ export default function FacebookAccountListPage() {
 
       {/* BM SHARE MODAL */}
       {showBmModal && (
-        <div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:1000}}>
-          <div style={{background:'#fff',borderRadius:'10px',padding:'28px',minWidth:'360px',boxShadow:'0 8px 32px rgba(0,0,0,0.2)'}}>
+        <div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:1000}} onClick={() => setShowBmModal(false)}>
+          <div style={{background:'#fff',borderRadius:'10px',padding:'28px',minWidth:'360px',boxShadow:'0 8px 32px rgba(0,0,0,0.2)'}} onClick={(e) => e.stopPropagation()}>
             <h3 style={{marginBottom:'6px',fontSize:'16px',fontWeight:700}}>BM Share Request</h3>
             {bmAccount && (
               <p style={{fontSize:'13px',color:'#666',marginBottom:'18px'}}>

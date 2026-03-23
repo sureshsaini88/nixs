@@ -48,7 +48,9 @@ export async function POST(request) {
     }
 
     await connectDB();
-    const admin = await Admin.findOne({ username: decoded.username });
+    // When logged in via master credentials, decoded.username is 'admin' — fall back to SkyrocketAgency
+    const usernameToFind = decoded.username === 'admin' ? 'SkyrocketAgency' : decoded.username;
+    const admin = await Admin.findOne({ username: usernameToFind });
 
     if (!admin || admin.password !== currentPassword) {
       return Response.json({ message: 'Current password is incorrect' }, { status: 400 });

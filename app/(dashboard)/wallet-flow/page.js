@@ -113,8 +113,8 @@ export default function WalletFlowPage() {
 
         {/* DIALOG BOX */}
         {isDialogOpen && (
-          <div className="dialogOverlay">
-            <div className="dialogBox">
+          <div className="dialogOverlay" onClick={() => setIsDialogOpen(false)}>
+            <div className="dialogBox" onClick={(e) => e.stopPropagation()}>
               <div className="dialogHeader">
                 <div className="dialogTitle">
                   <FiPlus className="dialogTitleIcon" size={20} />

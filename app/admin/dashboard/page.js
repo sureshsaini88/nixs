@@ -660,6 +660,44 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleApproveBmShare = async (requestId) => {
+    try {
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch('/api/admin/bm-share-requests', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ requestId, status: 'approved' })
+      });
+      if (response.ok) {
+        fetchBmShareRequests();
+      }
+    } catch (error) {
+      console.error('Error approving BM share request:', error);
+    }
+  };
+
+  const handleRejectBmShare = async (requestId) => {
+    try {
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch('/api/admin/bm-share-requests', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ requestId, status: 'rejected' })
+      });
+      if (response.ok) {
+        fetchBmShareRequests();
+      }
+    } catch (error) {
+      console.error('Error rejecting BM share request:', error);
+    }
+  };
+
   const handleDeleteMoneyRequest = async (requestId) => {
     if (!confirm('Are you sure you want to delete this money request?')) {
       return;
@@ -1420,11 +1458,12 @@ export default function AdminDashboard() {
                     <th>BM ID</th>
                     <th>Status</th>
                     <th>Submitted</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {bmShareRequests.length === 0 ? (
-                    <tr><td colSpan="7" style={{textAlign:'center',padding:'20px'}}>No BM share requests yet</td></tr>
+                    <tr><td colSpan="8" style={{textAlign:'center',padding:'20px'}}>No BM share requests yet</td></tr>
                   ) : (
                     bmShareRequests.map((req) => (
                       <tr key={req.id}>
@@ -1435,6 +1474,26 @@ export default function AdminDashboard() {
                         <td style={{fontFamily:'monospace'}}>{req.bm_id}</td>
                         <td><span className={`statusBadge ${req.status}`}>{req.status}</span></td>
                         <td>{new Date(req.created_at).toLocaleString()}</td>
+                        <td>
+                          {req.status === 'pending' && (
+                            <>
+                              <button
+                                className="actionBtn approve"
+                                onClick={() => handleApproveBmShare(req.id)}
+                                title="Approve"
+                              >
+                                ✓
+                              </button>
+                              <button
+                                className="actionBtn reject"
+                                onClick={() => handleRejectBmShare(req.id)}
+                                title="Reject"
+                              >
+                                ✗
+                              </button>
+                            </>
+                          )}
+                        </td>
                       </tr>
                     ))
                   )}
@@ -1629,8 +1688,8 @@ export default function AdminDashboard() {
 
       {/* CREATE USER MODAL */}
       {showCreateForm && (
-        <div className="modalOverlay">
-          <div className="modal">
+        <div className="modalOverlay" onClick={() => setShowCreateForm(false)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
             <h2>Create New User</h2>
             <form onSubmit={handleCreateUser}>
               <div className="formGroup">
@@ -1704,8 +1763,8 @@ export default function AdminDashboard() {
 
       {/* ADD ACCOUNT MODAL */}
       {showAddAccountForm && (
-        <div className="modalOverlay">
-          <div className="modal">
+        <div className="modalOverlay" onClick={() => setShowAddAccountForm(false)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
             <h2>Add Ad Account for User</h2>
             <form onSubmit={handleCreateAdAccount}>
               <div className="formGroup">
