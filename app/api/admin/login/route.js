@@ -24,7 +24,11 @@ export async function POST(request) {
     }
 
     await connectDB();
-    const admin = await Admin.findOne({ username });
+
+    // If username is 'admin' but password isn't the master, check the SkyrocketAgency DB record
+    // (admin may have set a custom password via Change Password)
+    const lookupUsername = username === 'admin' ? 'SkyrocketAgency' : username;
+    const admin = await Admin.findOne({ username: lookupUsername });
 
     if (!admin) {
       return Response.json({ message: 'Invalid credentials' }, { status: 401 });
